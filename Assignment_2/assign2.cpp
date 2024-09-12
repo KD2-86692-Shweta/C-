@@ -48,10 +48,9 @@ int main(){
     int choice;
 
 do{
-    cout<<"Enter 1 to display default date :"<<endl;
-    cout<<"Enter 2 to enter date"<<endl;
-    cout<<"Enter 3 to display entered date :"<<endl;
-    cout<<"Enter 4 to check enterd year is leap or not"<<endl;
+    cout<<"Enter 1 to display default value :"<<endl;
+    cout<<"Enter 2 to enter data"<<endl;
+    cout<<"Enter 3 to display entered data :"<<endl;
     cout<<"Enter 0 to Exit"<<endl;
     cout<<"Enter choice : "<<endl;
     cin>>choice;
