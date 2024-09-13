@@ -11,7 +11,7 @@ class Address{
       string city;
       int pin;
 public : 
-      Address(){
+      Address(): building(" "), street(" "), city(" "), pin(0){
 
       }
       
@@ -41,19 +41,46 @@ public :
         return street;
       }
 
+      string setcity(string city){
+          this->city=city;
+      }
+
+      int setpin(int pin)
+      {
+        this->pin=pin;
+      }
+
+
+
+      string getcity(){
+        return city;
+      }
+      int getpin(){
+        return pin;
+      }
+
+    
+
       void display(){
-          cout<<"Building Name is : "<<building<<". Street : "<<street<<". City : "<<city<<". pin"<<pin<<endl;
-          cout<<"Building "<<getdata();
+          cout<<"Building Name is : "<<building<<". Street : "<<street<<". City : "<<city<<". pin"<<pin<<endl<<endl;
+          cout<<"Building : "<<getdata()<<endl;
+          cout<<"Street : "<<getstreet()<<endl;
+          cout<<"City : "<<getcity()<<endl;
+          cout<<"Pin : "<<getpin()<<endl;
       }
 
 
 };
 int main(){
     Address a1;
-    a1.accept();
-    
+   a1.accept();
     a1.setdata("Kolhapur");
+    a1.setstreet("ruikar street");
+    a1.setcity("kolhapur");
+    a1.setpin(416234);
     a1.display();
+
+
 
     
 
