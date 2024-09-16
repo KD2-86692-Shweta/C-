@@ -8,12 +8,17 @@ using namespace std;
 class Stack{
     int top;
     int size;
+    int *ptr;
+    int element;
     public: 
-    Stack(int size){
+    Stack(int size=5){
         this->size=size;
+        top=-1;
+        ptr=new int[size];
         
     }
-    void push(){
+    void push(int element){
+        this->element=element;
         if(isFull()){
            cout<<"Stack is full";
         }
@@ -21,7 +26,8 @@ class Stack{
         top=top+1;
 
     }
-    void pop(){
+    void pop(int element){
+        this->element=element;
         if(isEmpty()){
             cout<<"Stack is empty";
         }
@@ -29,7 +35,8 @@ class Stack{
         top=top-1;
 
     }
-    void peek(){
+    void peek(int element){
+        this->element=element;
         if(isEmpty()){
              cout<<"Stack is empty";
         }
@@ -52,7 +59,11 @@ class Stack{
 
 };
 int main(){
-    Stack *ptr=new Stack(5);
+    Stack *ptr=new Stack[5];
+    ptr[0].push(10);
+   
+
+
     
 
 }

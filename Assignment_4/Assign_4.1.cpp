@@ -21,6 +21,9 @@ class Time{
     int s;
     public:
 
+    Time():h(0),m(0),s(0){
+        
+    }
     Time(int h,int m,int s){
              this ->h=h;
              this ->m=m;
@@ -34,6 +37,7 @@ class Time{
             cin>>m;
             cout<<"Enter sec : ";
             cin>>s;
+            cout<<"_______________________________________"<<endl;
     }
 
     void setHour(int h) {
@@ -62,19 +66,17 @@ class Time{
 };
 
 int main(){
-    Time **ptr=new Time *[5];
+   
+
+    Time *ptr=new Time[5];
     for(int i=0;i<5;i++){
-       ptr[i]->acceptdata();
-      // ptr[i]->printTime();
+       ptr[i].acceptdata();
+       ptr[i].printTime();
     }
 
-    // for(int i=0;i<5;i++){
-    //     ptr[i]->printTime();
-    // }
-    for(int i=0;i<5;i++){
-        delete ptr[i];
-        ptr[i]=NULL;
-    }
+     delete[] ptr;
+     ptr=NULL;
+   
 
    
 }
