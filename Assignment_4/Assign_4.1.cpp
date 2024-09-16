@@ -68,12 +68,17 @@ class Time{
 int main(){
    
 
-    Time *ptr=new Time[5];
+    Time **ptr=new Time *[5];
     for(int i=0;i<5;i++){
-       ptr[i].acceptdata();
-       ptr[i].printTime();
+        ptr[i]=new Time;
+       ptr[i]->acceptdata();
+       ptr[i]->printTime();
     }
 
+    for(int i=0;i<5;i++){
+        delete ptr[i];
+        ptr[i]=NULL;
+    }
      delete[] ptr;
      ptr=NULL;
    
