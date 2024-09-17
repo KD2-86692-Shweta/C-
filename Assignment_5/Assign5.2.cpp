@@ -11,51 +11,77 @@ using namespace std;
 class Student{
     string name;
     string gender;
-     int rollno;
+    int rollno;
+    static int generaterollno;
     int marks[3];
 
     public:
 
-    Student(){
+    Student():rollno(++generaterollno){
         this->name="";
         this->gender="";
         this->rollno=0;
         this->marks[3]=0;
     }
-    Student(string name,string gender,int rollno,int marks[3])
+    Student(string name,string gender,int marks[3]):rollno(++generaterollno)
     {
         this->name=name;
         this->gender=gender;
-        this->rollno=rollno;
+       // this->rollno=rollno;
         this->marks[3]=marks[3];
     }
     void acceptdata(){
+        cout<<"_______________________________________________________________"<<endl;
+
         cout<<"Enter Name of Student : "<<endl;
         cin>>name;
         cout<<"Enter gender of student : "<<endl;
         cin>>gender;
-        cout<<"Enter roll number of student : "<<endl;
-        cin>>rollno;
+        // cout<<"Enter roll number of student : "<<endl;
+        // cin>>rollno;
 
         cout<<"Enter Marks of physics, Chemistry ,maths resp : "<<endl;
         for(int i=0;i<3;i++)
         {
             cin>>marks[i];
         }
+        cout<<"_______________________________________________________________"<<endl;
+
     }
     void displaydata(){
+        cout<<"_______________________________________________________________"<<endl;
+
+        cout<<"Student Roll No is :"<<++rollno<<endl;
         cout<<"Student Name is : "<<name<<endl;
         cout<<"Student Gender is : "<<gender<<endl;
-        cout<<"Student Roll No is : "<<rollno<<endl;
+      
         for(int i=0;i<3;i++)
         {
         cout<<"Student Marks are : "<<marks[i];
         }
+
+        cout<<"_______________________________________________________________"<<endl;
     }
 
 };
+int Student::generaterollno=0;
 int main(){
     Student s1;
     s1.acceptdata();
     s1.displaydata();
+
+    
+    Student *ptr[5];
+    for(int i=0;i<5;i++){
+        ptr[i]=new Student;
+        ptr[i]->acceptdata();
+         ptr[i]->displaydata();
+      
+        
+    }
+    for(int j=0;j<5;j++){
+        ptr[j]->displaydata();
+        
+    }
+
 }
