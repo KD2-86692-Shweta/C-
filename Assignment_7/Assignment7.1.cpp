@@ -7,6 +7,7 @@ Hint - Create class Product and inherit into Book and Tape. Also create array li
 #include<typeinfo>
 using namespace std;
 
+
 class Product{
     public:
     int id;
@@ -120,6 +121,7 @@ double calculateDiscount(Product **p){
         
         double total_bill=0;
         int index=0;
+        double price=0;
 
         while((choice=menu())!=0){
             switch(choice){
