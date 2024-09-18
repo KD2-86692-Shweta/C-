@@ -28,13 +28,13 @@ class Employee{
     double getSalary(){
         return salary;
     }
-    void accept(){
+   void accept(){
         cout<<"Enter id";
         cin>>id;
         cout<<"Enter salary : ";
         cin>>salary;
     }
-    void display(){
+     void display(){
         cout<<"id : "<<id<<endl;
         cout<<" salary : "<<salary<<endl;
     }
@@ -126,15 +126,15 @@ public:
              
       }
       
-      void accept(){
-          acceptManager();
-          acceptCommission();             
-      }
+    //   void accept(){
+    //       acceptManager();
+    //       acceptCommission();             
+    //   }
 
-      void display(){
-        displayManager();
-        displaySalesman();
-      }
+    //   void display(){
+    //     displayManager();
+    //     displaySalesman();
+    //   }
       
 };
 
