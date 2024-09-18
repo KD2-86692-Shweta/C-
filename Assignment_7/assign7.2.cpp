@@ -1,5 +1,5 @@
-#include<iostream>
-#include<typeinfo>
+#include <iostream>
+#include <typeinfo>
 
 using namespace std;
 
@@ -8,61 +8,56 @@ class Employee
     int id;
     double salary;
 
-    public:
-
+public:
     Employee()
     {
         id = 0;
         salary = 0;
     }
 
-    Employee(int id,double salary)
+    Employee(int id, double salary)
     {
         this->id = id;
         this->salary = salary;
-
     }
 
     virtual void Accept()
     {
-        cout<<"Enter the Id:"<<endl;
-        cin>>id;
-        cout<<"Enter the salary :"<<endl;
-        cin>>salary;
-
+        cout << "Enter the Id:" << endl;
+        cin >> id;
+        cout << "Enter the salary :" << endl;
+        cin >> salary;
     }
     virtual void Display()
     {
-        cout<<"ID : "<<id<<endl;
-        cout<<"Salary : "<<salary<<endl;
+        cout << "ID : " << id << endl;
+        cout << "Salary : " << salary << endl;
     }
-
 };
 
 class Manager : virtual public Employee
 {
     double bonus;
 
-    protected:
+protected:
     void AcceptManager()
     {
-        cout<<"Enter the Bonus :"<<endl;
-        cin>>bonus;
+        cout << "Enter the Bonus :" << endl;
+        cin >> bonus;
     }
 
     void DisplayManager()
     {
-        cout<<"Bonus :"<<bonus<<endl;
+        cout << "Bonus :" << bonus << endl;
     }
 
-    public:
-
+public:
     Manager()
     {
         bonus = 0;
     }
 
-    Manager(int id,double bonus,double salary):Employee(id,salary)
+    Manager(int id, double bonus, double salary) : Employee(id, salary)
     {
         this->bonus = bonus;
     }
@@ -71,74 +66,59 @@ class Manager : virtual public Employee
     {
         Employee::Accept();
         AcceptManager();
-        
-
     }
 
     void Display()
     {
         Employee::Display();
         DisplayManager();
-        
     }
-
-
 };
-
 
 class Salesman : virtual public Employee
 {
-    double commission ;
+    double commission;
 
-    protected:
-
+protected:
     void AcceptSalesMan()
     {
-        cout<<"Enter the Commission"<<endl;
-        cin>>commission;
+        cout << "Enter the Commission" << endl;
+        cin >> commission;
     }
 
     void DisplaySalesMan()
     {
-            cout<<"Commission of Salesman :"<<commission<<endl;
+        cout << "Commission of Salesman :" << commission << endl;
     }
 
-    public:
-    Salesman() : commission(0){}
+public:
+    Salesman() : commission(0) {}
 
-    Salesman (int id,double commission,double salary) : Employee(id,salary)
+    Salesman(int id, double commission, double salary) : Employee(id, salary)
     {
         this->commission = commission;
     }
 
-
     void Accept()
     {
-        Employee :: Accept();
+        Employee ::Accept();
         AcceptSalesMan();
-        
     }
 
     void Display()
     {
         Employee::Display();
         DisplaySalesMan();
-
-
     }
-
-
 };
 
-class SalesManager :public Manager ,public Salesman
+class SalesManager : public Manager, public Salesman
 {
-    public:
+public:
+    SalesManager() {}
 
-    SalesManager(){}
-
-    SalesManager(int id,double sal,double commission):Employee(id,sal)
+    SalesManager(int id, double sal, double commission) : Employee(id, sal)
     {
-
     }
 
     void Accept()
@@ -146,9 +126,6 @@ class SalesManager :public Manager ,public Salesman
         Employee::Accept();
         Manager::AcceptManager();
         SalesManager::AcceptSalesMan();
-
-
-
     }
 
     void Display()
@@ -157,7 +134,6 @@ class SalesManager :public Manager ,public Salesman
         this->DisplayManager();
         this->DisplaySalesMan();
     }
-
 };
 
 int menu()
@@ -166,13 +142,11 @@ int menu()
 
     cout << "*******************" << endl;
     cout << "0. EXIT" << endl;
-    cout << "1. Add Manager" << endl;
-    cout << "2. Add Salesman " << endl;
-    cout << "3.Accept SalesManager" <<endl;
-    cout << "4.Display Count of all employees" <<endl;
-    cout << "5.Display All Manager" <<endl;
-    cout << "6. Display All Salesman" << endl;
-    cout << "7. Display Salesmanager " << endl;
+    cout << "1.Accept Employee" << endl;
+    cout << "2.Display Count of all employees" << endl;
+    cout << "3.Display All Manager" << endl;
+    cout << "4. Display All Salesman" << endl;
+    cout << "5. Display Salesmanager " << endl;
 
     cin >> choice;
     cout << "*******************" << endl;
@@ -180,110 +154,129 @@ int menu()
     return choice;
 }
 
-
-
 int main()
 {
-   int choice = 0;
+    int choice, ichoice = 0;
+    int mcnt = 0;
+    int smcnt = 0;
+    int scnt = 0;
+
 
     Employee *arr[3];
     int index = 0;
 
-    while((choice = menu())!=0)
+    while ((choice = menu()) != 0)
     {
         switch (choice)
         {
-            case 1:
-            arr[index] = new Manager;
-            arr[index]->Accept();
-            index++;
+        case 1:
+        
+            cout << "***********************************" << endl;
+            cout << "---------------------------" << endl;
 
-            break;
+            cout << "1. Add Manager" << endl;
+            cout << "2. Add Salesman " << endl;
+            cout << "3.Accept SalesManager" << endl;
+
+            cout << "---------------------------" << endl;
+            cout << "***********************************" << endl;
+
+            cout<<"Enter Your Choice :"<<endl;
+            cin>>ichoice;
+
+        
+            switch (ichoice)
+            {
+            case 1:
+                arr[index] = new Manager;
+                arr[index]->Accept();
+                index++;
+                mcnt++;
+                break;
 
             case 2:
-
-            arr[index] = new Salesman;
-            arr[index]->Accept();
-            index++;
-
-            break;
+                arr[index] = new Salesman;
+                arr[index]->Accept();
+                index++;
+                scnt++;
+                break;
 
             case 3:
-            arr[index] = new SalesManager;
-            arr[index]->Accept();
-            break;
-
-            case 4:
-            cout<<"Count of all Employess : "<<index<<endl;
-            break;
-
-            case 5:
-            cout<<"Displaying all Manager"<<endl;
-            for(int i = 0;i<index;i++)
-            {
-                if(typeid(*arr[i])==typeid(Manager))
-                {
-                    arr[i]->Display();
-
-                }
-
-                else
-                {
-                    cout<<"No Manager Found..."<<endl;
-
-                }
-            }
-
-            break;
-
-            case 6:
-            cout<<"Displaying all SalesMan"<<endl;
-            for(int i = 0;i<index;i++)
-            {
-                if(typeid(*arr[i])==typeid(Salesman))
-                {
-                    arr[i]->Display();
-
-                }
-
-                else
-                {
-                    cout<<"No Salesman Found..."<<endl;
-
-                }
-            }
-
-            break;
-
-             case 7:
-            cout<<"Displaying all Salesmanager"<<endl;
-            for(int i = 0;i<index;i++)
-            {
-                if(typeid(*arr[i])==typeid(SalesManager))
-                {
-                    arr[i]->Display();
-
-                }
-
-                else
-                {
-                    cout<<"No SalesManager Found..."<<endl;
-                }
-            }
-
-            break;
-
+                arr[index] = new SalesManager;
+                arr[index]->Accept();
+                index++;
+                smcnt++;
+                break;
 
             default:
-            cout<<"Invalid choice"<<endl;
+                cout << "Invalid Choice for Accept:" << endl;
+                break;
+            }
+
+        case 2:
+            cout << "Count of all Employess : " << index << endl;
+            cout << "Count of Managers :" << mcnt << endl;
+            cout << "Count of Salesman :" << scnt << endl;
+            cout << "Count of Salesmanager:" << smcnt << endl;
+
             break;
 
-            
+        case 3:
+            //cout << "Displaying all Manager" << endl;
+            for (int i = 0; i < index; i++)
+            {
+                if (typeid(*arr[i]) == typeid(Manager))
+                {
+                    arr[i]->Display();
+                }
+
+                else
+                {
+                    cout << "No Manager Found..." << endl;
+                }
+            }
+
+            break;
+
+        case 4:
+            //cout << "Displaying all SalesMan" << endl;
+            for (int i = 0; i < index; i++)
+            {
+                if (typeid(*arr[i]) == typeid(Salesman))
+                {
+                    arr[i]->Display();
+                }
+
+                else
+                {
+                    cout << "No Salesman Found..." << endl;
+                }
+            }
+
+            break;
+
+        case 5:
+            //cout << "Displaying all Salesmanager" << endl;
+            for (int i = 0; i < index; i++)
+            {
+                if (typeid(*arr[i]) == typeid(SalesManager))
+                {
+                    arr[i]->Display();
+                }
+
+                else
+                {
+                    cout << "No SalesManager Found..." << endl;
+                }
+            }
+
+            break;
+
+        default:
+            cout << "Invalid choice" << endl;
+            break;
         }
     }
 
-
     return 0;
-
-
 }
